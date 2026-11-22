@@ -1,0 +1,4 @@
+interface:
+  display_name: "취업 공고 조사·지원 관리"
+  short_description: "개인별 필수조건과 선호·가중치에 맞춘 공고 조사 및 Notion 지원 관리"
+  default_prompt: "$career-opportunity-tracker로 내 프로필 기준에 맞는 채용공고를 조사하고 지원 현황을 정리해줘."

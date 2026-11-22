@@ -1,0 +1,12 @@
+# Personal profiles and local settings
+**/profiles/local/
+**/profiles/*.local.yaml
+**/profiles/*.local.yml
+.env
+.env.*
+
+# Local tooling
+.DS_Store
+__pycache__/
+*.pyc
+.venv/

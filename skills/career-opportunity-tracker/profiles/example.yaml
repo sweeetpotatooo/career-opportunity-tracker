@@ -1,0 +1,45 @@
+# Structure example only: create profiles/local/<name>.yaml with the person's own preferences.
+person: "예시 사용자"
+ranking_mode: "ordinal"
+experience: []
+constraints:
+  work_country:
+    level: "unknown"
+    value: null
+  location:
+    level: "unknown"
+    value: null
+  employment_type:
+    level: "unknown"
+    value: null
+  education:
+    level: "unknown"
+    value: null
+  availability:
+    level: "unknown"
+    value: null
+  salary_minimum:
+    level: "unknown"
+    value: null
+criteria:
+  # These labels and priorities are examples, not agreed preferences.
+  - id: "role_fit"
+    label: "원하는 업무와 책임"
+    priority: 1
+    weight: null
+    evidence: "실제로 맡을 업무와 의사결정·실행 범위를 확인"
+  - id: "growth"
+    label: "학습과 성장 기회"
+    priority: 2
+    weight: null
+    evidence: "멘토링·피드백과 새로운 경험의 기회를 확인"
+  - id: "work_conditions"
+    label: "근무조건"
+    priority: 3
+    weight: null
+    evidence: "본인이 합의한 근무지·방식·보상 기준과 대조"
+execution_preferences: []
+eligibility_policy: []
+search_scope: []
+lower_priority: []
+notion: null
