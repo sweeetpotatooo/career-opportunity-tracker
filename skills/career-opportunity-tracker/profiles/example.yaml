@@ -1,6 +1,7 @@
 # Structure example only: create profiles/local/<name>.yaml with the person's own preferences.
 person: "예시 사용자"
 ranking_mode: "ordinal"
+evidence_sources: []  # 본인이 지정한 이력서·증빙·프로젝트 기록. 공개 저장소에는 개인 링크를 넣지 않음
 experience: []
 constraints:
   work_country:

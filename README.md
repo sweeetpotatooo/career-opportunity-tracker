@@ -8,13 +8,16 @@
 
 - 개인의 경험·필수조건·선호에 맞는 채용공고 조사 및 비교
 - 기업 공식 공고의 실제 업무·지원 조건·모집 상태·마감 확인
+- 재학·졸업·필수 경력·풀타임·중복 지원 등 지원 자격을 추천 전에 확인
+- 공고별 실제 제출 서류·자기소개 문항·분량·전형과 준비 상태 관리
+- 같은 경험을 직무별 문제·판단·실행·검증 근거로 연결
 - 정성적 우선순위 또는 합의한 숫자 가중치로 추천 근거 설명
 - 기존 공고와 대조해 플랫폼 중복을 합치고 신규·중요 변경 정리
 - Notion에 공고·지원 여부·전형 단계·합불 결과 누적
 - 지원 마감과 실제 과제·면접 일정을 연결된 캘린더에서 관리
 - 요청받은 경우, 마감됐고 지원 이력이 없는 공고를 휴지통으로 정리
 
-이 저장소는 에이전트가 읽는 **스킬 지침과 프로필 예시**를 제공합니다. 자체 크롤러나 채용 사이트 로그인 프로그램은 포함하지 않습니다. 사용할 수 있는 웹 검색·브라우저·Notion 연결 도구를 통해 작업합니다.
+이 저장소는 에이전트가 읽는 **스킬 지침·프로필 예시·지원 자격 판정 도우미**를 제공합니다. 자체 크롤러나 채용 사이트 로그인 프로그램은 포함하지 않습니다. 사용할 수 있는 웹 검색·브라우저·Notion 연결 도구를 통해 작업합니다.
 
 ## 설치
 
@@ -62,6 +65,17 @@ LinkedIn과 주요 채용 플랫폼에서 찾고 공식 공고를 확인해줘.
 $career-opportunity-tracker
 이 공고가 내 기준에 맞는지 확인하고 Notion 대시보드에 추가해줘: <공고 URL>
 ```
+
+### 지원 준비
+
+```text
+$career-opportunity-tracker
+이 공고의 실제 제출 요건부터 확인해줘.
+내 원본 이력서와 프로젝트 기록에서 이 역할에 맞는 사례 2~3개를 연결하고,
+필수 제출물과 추가로 준비하면 좋은 것을 나눠줘.
+```
+
+재학·졸업·근무 가능 기간 등 중요한 조건이 미확인이면 확인 대상으로 분리합니다. 필수조건 불충족을 높은 적합도 점수로 덮지 않습니다. 자세한 기준은 [지원 자격 확인](skills/career-opportunity-tracker/references/eligibility.md), [지원 준비](skills/career-opportunity-tracker/references/application-prep.md)를 참고하세요.
 
 ### 전형 결과 반영
 
@@ -152,9 +166,22 @@ skills/career-opportunity-tracker/
 ├── SKILL.md
 ├── agents/openai.yaml
 ├── profiles/example.yaml
-└── references/
-    ├── ranking.md
-    └── notion-workflow.md
+├── references/
+│   ├── ranking.md
+│   ├── eligibility.md
+│   ├── application-prep.md
+│   └── notion-workflow.md
+├── scripts/eligibility_gate.py
+└── tests/test_eligibility_gate.py
 ```
 
 개인 프로필·실제 Notion 주소·지원 결과·인증정보는 공개 버전에 포함하지 않습니다. `profiles/local/`, `*.local.yaml`과 환경 파일은 `.gitignore`에서 제외합니다. 공개용 예시나 지침을 수정할 때도 개인 데이터가 포함되지 않았는지 확인해 주세요.
+
+## 지원 자격 판정 도우미 검증
+
+Python 3.9 이상과 표준 라이브러리만 사용합니다. 에이전트가 공식 공고와 개인 근거를 읽어 정리한 JSON을 입력하면 추천 가능·조건 확인·경력 예외·제외로 나눕니다. 원문을 직접 수집하거나 증빙의 진위를 확인하는 프로그램은 아닙니다. 입력 형식은 [지원 자격 확인](skills/career-opportunity-tracker/references/eligibility.md)에 있습니다.
+
+```sh
+python3 -m unittest discover -s skills/career-opportunity-tracker/tests -v
+python3 skills/career-opportunity-tracker/scripts/eligibility_gate.py /absolute/path/checks.json
+```
